@@ -1,0 +1,10 @@
+#!/bin/sh
+
+expect -c "
+set timeout -1;
+spawn $*
+expect {
+    \"Press * to continue or ctrl-c to cancel adding it\" { exp_send \"\r\"; exp_continue }
+    eof
+}
+"

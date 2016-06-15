@@ -1,0 +1,10 @@
+#!/bin/sh
+
+expect -c "
+set timeout -1;
+spawn $*
+expect {
+    \"Do you accept the Oracle Binary Code license terms?*\" { exp_send \"yes\r\"; exp_continue }
+    eof
+}
+"
