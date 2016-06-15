@@ -16,3 +16,4 @@ dist
 /.settings
 hk-debug
 app/assets/javascripts/build
+node_modules

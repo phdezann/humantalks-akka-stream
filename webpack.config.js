@@ -11,5 +11,15 @@ module.exports = {
     publicPath: '',
     filename: '[name].js',
     pathInfo: true
+  },
+  module: {
+      noParse: [],
+      loaders: [
+          {
+              test: /\.js$/,
+              loader: 'babel',
+              exclude: /node_modules/
+          }
+      ]
   }
 }
