@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "vue-playframework",
   "dependencies": {
-    "vue": "^1.0.24"
+    "highcharts": "^4.2.5",
+    "vue": "^1.0.24",
+    "vue-resource": "^0.7.4"
   },
   "devDependencies": {
     "babel-core": "^6.4.0",
