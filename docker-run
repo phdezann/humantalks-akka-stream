@@ -1,0 +1,29 @@
+#!/bin/bash
+set -e
+
+USER_UID=${USER_UID:-$(id -u)}
+USER_GID=${USER_GID:-$(id -g)}
+APP_DIR=${APP_DIR:-$(pwd)}
+DOCKER_OPTS=${DOCKER_OPTS:-}
+
+docker build                       \
+    --build-arg=USER_UID=$USER_UID \
+    --build-arg=USER_GID=$USER_GID \
+    -t htas-app-build              \
+    .docker/docker-build
+docker build                       \
+    --build-arg=USER_UID=$USER_UID \
+    --build-arg=USER_GID=$USER_GID \
+    -t htas-app-build-cache        \
+    .docker/docker-build-cache
+docker create                   \
+    --name htas-app-build-cache \
+    htas-app-build-cache 2> /dev/null || echo "Data container for build caches already exists, keep it for faster build executions."
+docker run                              \
+    -it --rm                            \
+    --volumes-from htas-app-build-cache \
+    -v $APP_DIR:/workspace              \
+    -w /workspace                       \
+    ${DOCKER_OPTS}                      \
+    htas-app-build                      \
+    /bin/bash -c "$*"

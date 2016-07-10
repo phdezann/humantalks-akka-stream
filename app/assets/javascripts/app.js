@@ -40,15 +40,12 @@ new Vue({
         renderTo: this.$el
       },
       title: {
-        text: 'Sensors'
+        text: ''
       },
       xAxis: {
         type: 'datetime',
       },
       yAxis: {
-        title: {
-          text: 'Value'
-        },
         plotLines: [{
           value: 0,
           width: 1,

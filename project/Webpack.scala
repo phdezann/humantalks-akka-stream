@@ -11,6 +11,8 @@ object Webpack {
       var process: Option[Process] = None
 
       override def beforeStarted() = {
+        println("About to start 'npm install', this may take a while...")
+        Process("npm install", base).!
         process = Option(
           Process("webpack", base).run()
         )
